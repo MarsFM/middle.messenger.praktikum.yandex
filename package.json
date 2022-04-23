@@ -1,5 +1,11 @@
 {
-  "name": "web-chat",
+  "targets": {
+    "default": {
+      "engines": {
+        "browsers": ">= 50%"
+      }
+    }
+  },
   "version": "1.0.0",
   "description": "Веб-приложения «Чат»",
   "scripts": {
@@ -11,19 +17,15 @@
     "stylelint": "npx stylelint '**/*.css'",
     "eslint": "npx eslint './src/**/*.js'"
   },
-  "targets": {
-    "default": {
-      "engines": {
-        "browsers": ">= 50%"
-      }
-    }
-  },
   "pre-commit": {
     "silent": false,
     "run": [
       "stylelint",
       "eslint"
     ]
+  },
+  "engines": {
+    "node": "^14.16.1"
   },
   "repository": {
     "type": "git",
