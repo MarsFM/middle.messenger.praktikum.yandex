@@ -11,17 +11,19 @@
     "stylelint": "npx stylelint '**/*.css'",
     "eslint": "npx eslint './src/**/*.js'"
   },
+  "targets": {
+    "default": {
+      "engines": {
+        "browsers": ">= 50%"
+      }
+    }
+  },
   "pre-commit": {
     "silent": false,
     "run": [
       "stylelint",
       "eslint"
     ]
-  },
-  "engines": {
-    "node": ">=16.0.0",
-    "npm": "~8.0.0",
-    "browsers": "> 0.25%"
   },
   "repository": {
     "type": "git",
