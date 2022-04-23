@@ -9,6 +9,6 @@ app.listen(port);
 
 app.use(express.static('dist'));
 
-app.get('/', function(_, res) {
-    res.sendFile(path.join(__dirname, './dist/index.html'));
+app.get('/', (_, res) => {
+    res.sendFile(`${__dirname}/dist/index.html`);
 });
