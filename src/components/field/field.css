@@ -1,0 +1,8 @@
+.field {
+    box-sizing: border-box;
+    width: 100%;
+    height: 30px;
+    border: 0px;
+    outline: none;
+    border-bottom: 1px solid #F83737;
+}
