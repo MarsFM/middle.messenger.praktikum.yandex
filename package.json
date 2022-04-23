@@ -6,7 +6,7 @@
     "clean": "rm -rf node_modules && rm -rf package-lock.json",
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "parcel index.html -p 5000",
-    "start": "parcel build index.html && node server.js",
+    "start": "parcel build index.html && nodemon server.js localhost 3000",
     "build": "parcel build index.html",
     "stylelint": "npx stylelint '**/*.css'",
     "eslint": "npx eslint './src/**/*.js'"
