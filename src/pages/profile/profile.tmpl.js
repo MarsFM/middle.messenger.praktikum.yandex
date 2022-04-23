@@ -9,50 +9,54 @@ const fields = {
     firstName: {
         name: 'firstName',
         placeholder: 'Имя',
-        clazz: 'profile__first-name'
+        mix_class: 'profile__first-name'
     },
     lastName: {
         name: 'lastName',
         placeholder: 'Фамилия',
-        clazz: 'profile__last-name'
+        mix_class: 'profile__last-name'
     },
     nickname: {
         name: 'nickname',
         placeholder: 'Ник',
-        clazz: 'profile__nickname'
+        mix_class: 'profile__nickname'
     },
     login: {
         name: 'login',
         placeholder: 'Логин',
-        clazz: 'profile__login'
+        mix_class: 'profile__login'
     },
     email: {
         name: 'email',
         placeholder: 'Почта',
-        clazz: 'profile__email'
+        mix_class: 'profile__email'
     },
     phone: {
         name: 'phone',
         placeholder: 'Телефон',
-        clazz: 'profile__phone'
+        mix_class: 'profile__phone'
     },
     password: {
         name: 'password',
         placeholder: 'Пароль',
-        clazz: 'profile__password'
+        mix_class: 'profile__password'
     },
     confirmPassword: {
         name: 'confirmPassword',
         placeholder: 'Подтвердить пароль',
-        clazz: 'profile__confirm-password'
+        mix_class: 'profile__confirm-password'
     },
     buttonChangePassword: {
         name: 'Изменить пароль',
-        clazz:'profile__button-change-password'
+        mix_class:'profile__button-change-password',
+        type: 'submit',
+        variant: 'change-password'
     },
     buttonChangeData: {
         name: 'Изменть данные',
-        clazz:'profile__button-change-password'
+        type: 'submit',
+        mix_class:'profile__button-change-data',
+        variant: 'change-data',
     }
 };
 

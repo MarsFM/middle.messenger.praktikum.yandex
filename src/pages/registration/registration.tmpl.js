@@ -9,46 +9,48 @@ const fields = {
     firstName: {
         name: 'firstName',
         placeholder: 'Имя',
-        clazz: 'registration__first-name'
+        mix_class: 'registration__first-name'
     },
     lastName: {
         name: 'lastName',
         placeholder: 'Фамилия',
-        clazz: 'registration__last-name'
+        mix_class: 'registration__last-name'
     },
     nickname: {
         name: 'nickname',
         placeholder: 'Ник',
-        clazz: 'registration__nickname'
+        mix_class: 'registration__nickname'
     },
     login: {
         name: 'login',
         placeholder: 'Логин',
-        clazz: 'registration__login'
+        mix_class: 'registration__login'
     },
     email: {
         name: 'email',
         placeholder: 'Почта',
-        clazz: 'registration__email'
+        mix_class: 'registration__email'
     },
     phone: {
         name: 'phone',
         placeholder: 'Телефон',
-        clazz: 'registration__phone'
+        mix_class: 'registration__phone'
     },
     password: {
         name: 'password',
         placeholder: 'Пароль',
-        clazz: 'registration__password'
+        mix_class: 'registration__password'
     },
     confirmPassword: {
         name: 'confirmPassword',
         placeholder: 'Подтвердить пароль',
-        clazz: 'registration__confirm-password'
+        mix_class: 'registration__confirm-password'
     },
     button: {
         name: 'Регистрация',
-        clazz:'registration__button'
+        type: 'submit',
+        mix_class:'registration__button',
+        variant: 'registration',
     }
 };
 

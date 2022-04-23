@@ -2,8 +2,8 @@ import fieldTmpl from './field.hbs';
 
 import './field.css';
 
-export const field = ({name, placeholder, clazz}) => fieldTmpl({
+export const field = ({name, placeholder, mix_class}) => fieldTmpl({
     name,
     placeholder,
-    clazz
+    mix_class
 });

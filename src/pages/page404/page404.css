@@ -3,5 +3,5 @@
     left: calc(50% - 40px);
     top:  calc(50% - 100px);
     font-size: 50px;
-    font-family: Arial, sans-serif;
+    font-family: var(--ff-main);
 }

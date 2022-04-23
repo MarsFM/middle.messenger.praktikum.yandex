@@ -9,16 +9,18 @@ const fields = {
     login: {
         name: 'login',
         placeholder: 'логин',
-        clazz: 'authorization__login'
+        mix_class: 'authorization__login'
     },
     password: {
         name: 'password',
         placeholder: 'пароль',
-        clazz: 'authorization__password'
+        mix_class: 'authorization__password'
     },
     button: {
         name: 'Авторизация',
-        clazz:'authorization__button'
+        type: 'submit',
+        mix_class:'authorization__button',
+        variant: 'authorization',
     }
 };
 

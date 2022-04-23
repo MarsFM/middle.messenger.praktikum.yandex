@@ -15,7 +15,7 @@
     "start": "parcel build index.html && nodemon server.js localhost 3000",
     "build": "parcel build index.html",
     "stylelint": "npx stylelint '**/*.css'",
-    "eslint": "npx eslint './src/**/*.js'"
+    "eslint": "npx eslint './src/**/*.js' && npx eslint './index.js'"
   },
   "pre-commit": {
     "silent": false,

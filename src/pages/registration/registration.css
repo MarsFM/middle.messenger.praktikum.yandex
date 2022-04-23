@@ -15,9 +15,9 @@
 
 .registration h1 {
     margin: 0px 0px 50px;
-    font-family: Verdana, sans-serif, 'Inter';
+    font-family: var(--ff-main);
     font-weight: normal;
-    color: #000000;
+    color: var(--clr-title);
 }
 
 .registration .field {
@@ -31,6 +31,6 @@
 .registration a {
     margin-top: 10px;
     color: var(--mainColor);
-    font-family: Verdana, sans-serif, 'Inter';
+    font-family: var(--ff-main);
     font-size: 12px;
 }
