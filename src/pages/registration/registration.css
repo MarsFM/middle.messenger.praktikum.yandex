@@ -1,0 +1,36 @@
+.registration {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    margin: 0px auto;
+    box-sizing: border-box;
+    width: 340px;
+
+    padding: 20px;
+
+    border-radius: 10px;
+    box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.6);
+}
+
+.registration h1 {
+    margin: 0px 0px 50px;
+    font-family: var(--ff-main);
+    font-weight: normal;
+    color: var(--clr-title);
+}
+
+.registration .field {
+    margin: 10px 0px;
+}
+
+.registration .button {
+    margin-top: 30px;
+}
+
+.registration a {
+    margin-top: 10px;
+    color: var(--mainColor);
+    font-family: var(--ff-main);
+    font-size: 12px;
+}

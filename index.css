@@ -1,0 +1,11 @@
+:root {
+    --mainColor: #F83737;
+    --clr-white: #ffffff;
+    --ff-main: 'Arial', sans-serif;
+    --clr-title: #000000;
+    --crl-grey: #cccccc;
+}
+
+body {
+    color: var(--mainColor);
+}
