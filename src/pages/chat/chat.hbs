@@ -1,3 +1,13 @@
 <div class="chat">
-    <h1>Заглушка чата</h1>
+    <div class="chat__left-panel">
+        {{> chatItems}}
+    </div>
+    <div class="chat__right-panel">
+        <div class="chat__messages">
+            {{> messages}}
+        </div>
+        <div class="chat__composer">
+            {{> composer}}
+        </div>
+    </div>
 </div>

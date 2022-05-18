@@ -9,6 +9,10 @@
     },
     "parserOptions": {
         "sourceType": "module",
-        "ecmaVersion": 2015
+        "ecmaVersion": 8,
+        "ecmaFeatures": {
+            "experimentalObjectRestSpread": true
+        },
+        "requireConfigFile": false
     }
 }

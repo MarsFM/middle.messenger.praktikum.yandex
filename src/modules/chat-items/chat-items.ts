@@ -1,14 +1,10 @@
-import Handlebars from 'handlebars';
-import tmpl from './chat.hbs';
-import chatItem from '../../modules/chat-item';
-import messages from '../../components/message';
-import composer from '../../modules/composer';
-
-import './chat.css';
-import { registerPartials } from '../../../utils';
+import Block from "../../view/block";
+import ChatItem from "../chat-item";
+import {chatItems} from './chat-items.tmpl';
 
 const users = [
     {
+        id: 1,
         name: 'Кирилл',
         messages: [
             {
@@ -34,6 +30,7 @@ const users = [
         ],
     },
     {
+        id: 2,
         name: 'Иван',
         messages: [
             {
@@ -54,6 +51,7 @@ const users = [
         ],
     },
     {
+        id: 3,
         name: 'Виталя',
         messages: [
             {
@@ -74,6 +72,7 @@ const users = [
         ],
     },
     {
+        id: 4,
         name: 'Женя',
         messages: [
             {
@@ -95,10 +94,27 @@ const users = [
     },
 ];
 
-export const chat = ({components}) => {
-    registerPartials(components);
+export class ChatItems extends Block {
+    constructor(props = {}) {
+        super(props)
+    }
 
-    Handlebars.registerPartial('messages', messages({data: users[0].messages}));
+    renderChatItems() {
+        const obj = {};
+        const usersComponents = users.map(user => new ChatItem({data: user}))
 
-    return tmpl();
-};
+        usersComponents.forEach((component, index) => {
+            obj[`chatItem${++index}`] = component
+        })
+ 
+        return obj;
+    }
+
+    render() {
+        return this.compile(chatItems, {
+            components: {
+                ...this.renderChatItems()
+            }
+        })
+    }
+}
