@@ -4,6 +4,7 @@ import profile from '../../pages/profile';
 import renderPage5nn from '../../pages/page5nn';
 import renderPage404 from '../../pages/page404';
 import Authorization from '../../pages/authorization/authorization';
+import Registration from '../../pages/registration';
 
 
 export const rootNavigation = () => {
@@ -33,7 +34,10 @@ export const rootNavigation = () => {
     });
 
     regLink.addEventListener('click', () => {
-        root.innerHTML = registration();
+        const registration = new Registration();
+        root.innerHTML = '';
+        root.appendChild(registration.getContent());
+        return root;
     });
 
     profileLink.addEventListener('click', () => {

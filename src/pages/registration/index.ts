@@ -1,3 +1,4 @@
-import {registration} from './registration.tmpl';
+import {Registration} from './registration';
 
-export default registration;
+export default Registration;
+
