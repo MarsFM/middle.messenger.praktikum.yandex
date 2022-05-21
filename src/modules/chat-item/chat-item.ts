@@ -4,8 +4,6 @@ import {chatItem} from './chat-item.tmpl';
 export class ChatItem extends Block {
     constructor(props = {}) {
         super(props)
-
-        console.log('his.props.data', this.props.data)
     }
 
     handleClick(e) {
@@ -14,10 +12,7 @@ export class ChatItem extends Block {
 
     render() {
         return this.compile(chatItem, {
-            data: this.props.data,
-            events: {
-                'click': this.handleClick
-            }
+            data: this.props.data
         })
     }
 }

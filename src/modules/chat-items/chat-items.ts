@@ -73,7 +73,7 @@ const users = [
     },
     {
         id: 4,
-        name: 'Женя',
+        name: 'Вася',
         messages: [
             {
                 text: 'Привет Женя',
@@ -100,20 +100,18 @@ export class ChatItems extends Block {
     }
 
     renderChatItems() {
-        const obj = {};
-        const usersComponents = users.map(user => new ChatItem({data: user}))
-
-        usersComponents.forEach((component, index) => {
-            obj[`chatItem${++index}`] = component
-        })
- 
-        return obj;
+        return users.map(user => new ChatItem({
+            data: user,
+            events: {
+                'click': (e) => console.log('hello'),
+            },
+        }))
     }
 
     render() {
         return this.compile(chatItems, {
             components: {
-                ...this.renderChatItems()
+                'chatItems': this.renderChatItems()
             }
         })
     }

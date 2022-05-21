@@ -9,7 +9,7 @@ export class Composer extends Block {
 
     handleChange(e) {
         console.log(e.target.value)
-    };
+    }
 
     handleEnter(e) {
         if (e.key === "Enter") {

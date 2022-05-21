@@ -1,5 +1,5 @@
-import Handlebars from "handlebars"
-import { EventBus } from "./event-bus"
+import {EventBus} from "./event-bus"
+import uuid4 from "uuid4";
 
 export default class Block {
     eventBus
@@ -7,6 +7,7 @@ export default class Block {
     _meta
     _element
     _childrens
+    _id
 
     static EVENTS = {
         INIT:        "init",
@@ -23,6 +24,8 @@ export default class Block {
         this._meta = {
             props,
         };
+
+        this._id = uuid4();
 
         this.props = this.makeProxy(props);
 
@@ -58,6 +61,13 @@ export default class Block {
         }
     }
 
+    _removeEvents() {
+        const {events = {}} = this.props;
+        for (const eventName of Object.keys(events)) {
+            this._element.removeEventListener(eventName, events[eventName]);
+        }
+    }
+
     init() {
         this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
     }
@@ -69,12 +79,12 @@ export default class Block {
     }
 
     _render() {
-        this._element = document.createElement('div');
+        this._element = this.createDocumentElement('div');
         const block = this.render() as any;
+        this._removeEvents();
         this._element.innerHTML = '';
-
         this._element.appendChild(block);
-
+        this._element.firstElementChild.setAttribute('data-id', this._id);
         this._addEvents();
     }
 
@@ -86,11 +96,14 @@ export default class Block {
 
     compile(template, props) {
         const {components = {}} = props;
+        
+        this._childrens = this.makeProxy(components);
+        
+        const propsAndStubs = {...props};
+
         const fragment = this.createDocumentElement('template');
 
-        fragment.innerHTML = template(props);
-        
-        this._childrens = this.makeProxy(components)
+        fragment.innerHTML = template(propsAndStubs);
 
         for (const child of Object.values(this._childrens) as any) {
             if (Array.isArray(child)) {
@@ -106,10 +119,9 @@ export default class Block {
     }
 
     setComponent(child, fragment) {
-        const childElement = child.getContent().firstElementChild;
-        const clazz = childElement.getAttribute('class');
-        const stub = fragment.content.firstElementChild.getElementsByClassName(clazz)[0];
-        stub.replaceWith(child.getContent());
+        const stub = fragment.content.querySelector(`[data-id="${child._id}"]`);
+        if (stub)
+            stub.replaceWith(child.getContent());
     }
 
     makeProxy(props) {

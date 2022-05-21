@@ -3,14 +3,28 @@ import Block from "../../view/block";
 import Button from "../../components/button/button";
 import Field from "../../components/field/field";
 
+const data = {
+    login: '',
+    password: ''
+}
+
 export default class Authorization extends Block {
     components
     constructor(props) {
         super(props);
     }
 
-    handlerButton = (e: Event) => {
-        console.log('Button1');
+    handlerSubmit () {
+        console.log(data);
+    }
+
+    handleChangeLogin(event: Event) {
+        console.log(111);
+        data.login = (event.target as HTMLInputElement).value;
+    }
+
+    handleChangePassword(event: Event) {
+        data.password = (event.target as HTMLInputElement).value;
     }
 
     render() {
@@ -19,9 +33,7 @@ export default class Authorization extends Block {
             components: {
                 'button': new Button({
                     events: {
-                        'click' : (e) => {
-                            console.log(e, 'hello');
-                        }
+                        'click' : this.handlerSubmit
                     },
                     name: 'Авторизация',
                     type: 'submit',
@@ -32,24 +44,26 @@ export default class Authorization extends Block {
                     name: 'login',
                     events: {
                         'focusin': (e) => {
-                            e.target.style.background = 'pink';
+                            // e.target.style.background = 'pink';
                         },
                         'focusout': (e) => {
-                            e.target.style.background = 'white';
+                            // e.target.style.background = 'white';
                         },
-                        'input': (e) => {
-                            console.log('e', e.target.value);
-                        }
+                        'change': this.handleChangeLogin
                     },
                     placeholder: 'логин',
-                    mix_class: 'authorization__login'
+                    mix_class: 'authorization__login',
                 }),
                 'passwordField': new Field({
                     name: 'password',
+                    type: 'password',
                     placeholder: 'пароль',
-                    mix_class: 'authorization__password'
+                    mix_class: 'authorization__password',
+                    events: {
+                        'change': this.handleChangePassword
+                    }
                 }),
-            }
+            },
         });
     }
 }
