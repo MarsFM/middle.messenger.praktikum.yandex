@@ -1,10 +1,10 @@
-import { registerPartials, registerPartialsTest } from '../../../utils';
+import {registerPartialsForArray} from '../../utils/hbs';
 import tmpl from './chat-items.hbs';
 
 import './chat-items.css';
 
 export const chatItems = ({components}) => {
-    registerPartialsTest(components, 'chatItems')
+    registerPartialsForArray(components, 'chatItems');
 
     return tmpl();
-}
+};

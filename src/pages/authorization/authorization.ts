@@ -1,25 +1,25 @@
-import {authorization} from "./authorization.tmpl";
-import Block from "../../view/block";
-import Button from "../../components/button/button";
-import Field from "../../components/field/field";
+import {authorization} from './authorization.tmpl';
+import Block from '../../view/block';
+import Button from '../../components/button/button';
+import Field from '../../components/field/field';
+import {checkValidate} from '../../utils/validate';
 
 const data = {
     login: '',
     password: ''
-}
-
+};
 export default class Authorization extends Block {
-    components
+    components;
     constructor(props) {
         super(props);
     }
 
-    handlerSubmit () {
+    handlerSubmit() {
         console.log(data);
+        checkValidate(this._childrens);
     }
 
     handleChangeLogin(event: Event) {
-        console.log(111);
         data.login = (event.target as HTMLInputElement).value;
     }
 
@@ -29,11 +29,11 @@ export default class Authorization extends Block {
 
     render() {
         return this.compile(authorization, {
-            name: this.props.name, 
+            name: this.props.name,
             components: {
                 'button': new Button({
                     events: {
-                        'click' : this.handlerSubmit
+                        'click' : this.handlerSubmit.bind(this)
                     },
                     name: 'Авторизация',
                     type: 'submit',
@@ -43,12 +43,6 @@ export default class Authorization extends Block {
                 'loginField': new Field({
                     name: 'login',
                     events: {
-                        'focusin': (e) => {
-                            // e.target.style.background = 'pink';
-                        },
-                        'focusout': (e) => {
-                            // e.target.style.background = 'white';
-                        },
                         'change': this.handleChangeLogin
                     },
                     placeholder: 'логин',

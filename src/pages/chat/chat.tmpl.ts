@@ -5,7 +5,7 @@ import messages from '../../components/message';
 import composer from '../../modules/composer';
 
 import './chat.css';
-import { registerPartials } from '../../../utils';
+import {registerPartials} from '../../utils/hbs';
 
 const users = [
     {

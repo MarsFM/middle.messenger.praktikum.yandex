@@ -1,7 +1,8 @@
-import Button from "../../components/button/button";
-import Field from "../../components/field/field";
-import Block from "../../view/block";
-import {registration} from "./registration.tmpl";
+import Button from '../../components/button/button';
+import Field from '../../components/field/field';
+import {checkValidate} from '../../utils/validate';
+import Block from '../../view/block';
+import {registration} from './registration.tmpl';
 
 const data = {
     firstName: '',
@@ -16,20 +17,21 @@ const data = {
 
 export class Registration extends Block {
     constructor(props = {}) {
-        super(props)
+        super(props);
     }
 
     handleSubmit(e: Event) {
         console.log(data);
-    } 
+        checkValidate(this._childrens);
+    };
 
     handleFirstName(e: Event) {
         const input = (e.target as HTMLInputElement);
         const text = input.value;
 
         data.firstName = text;
-    }
-    
+    };
+
     handleLastName(e: Event) {
         const input = (e.target as HTMLInputElement);
         const text = input.value;
@@ -87,8 +89,8 @@ export class Registration extends Block {
                     type: 'text',
                     placeholder: 'Имя',
                     mix_class: 'registration__first-name',
-                    events: { 
-                        'change': this.handleFirstName 
+                    events: {
+                        'change': this.handleFirstName
                     },
                 }),
                 'lastNameField': new Field({
@@ -96,8 +98,8 @@ export class Registration extends Block {
                     type: 'text',
                     placeholder: 'Фамилия',
                     mix_class: 'registration__last-name',
-                    events: { 
-                        'change': this.handleLastName 
+                    events: {
+                        'change': this.handleLastName
                     },
                 }),
                 'nicknameField': new Field({
@@ -105,8 +107,8 @@ export class Registration extends Block {
                     type: 'text',
                     placeholder: 'Ник',
                     mix_class: 'registration__nickname',
-                    events: { 
-                        'change': this.handleNickName 
+                    events: {
+                        'change': this.handleNickName
                     },
                 }),
                 'loginField': new Field({
@@ -114,8 +116,8 @@ export class Registration extends Block {
                     type: 'text',
                     placeholder: 'Логин',
                     mix_class: 'registration__login',
-                    events: { 
-                        'change': this.handleLogin 
+                    events: {
+                        'change': this.handleLogin
                     },
                 }),
                 'emailField': new Field({
@@ -123,8 +125,8 @@ export class Registration extends Block {
                     type: 'text',
                     placeholder: 'Почта',
                     mix_class: 'registration__email',
-                    events: { 
-                        'change': this.handleEmail 
+                    events: {
+                        'change': this.handleEmail
                     },
                 }),
                 'phoneField': new Field({
@@ -132,8 +134,8 @@ export class Registration extends Block {
                     type: 'text',
                     placeholder: 'Телефон',
                     mix_class: 'registration__phone',
-                    events: { 
-                        'change': this.handlePhone 
+                    events: {
+                        'change': this.handlePhone
                     },
                 }),
                 'passwordField': new Field({
@@ -141,8 +143,8 @@ export class Registration extends Block {
                     type: 'password',
                     placeholder: 'Пароль',
                     mix_class: 'registration__password',
-                    events: { 
-                        'change': this.handlePassword 
+                    events: {
+                        'change': this.handlePassword
                     },
                 }),
                 'confirmPasswordField': new Field({
@@ -150,8 +152,8 @@ export class Registration extends Block {
                     type: 'password',
                     placeholder: 'Подтвердить пароль',
                     mix_class: 'registration__confirm-password',
-                    events: { 
-                        'change': this.handleConfirmPassword 
+                    events: {
+                        'change': this.handleConfirmPassword
                     },
                 }),
                 'button': new Button({
@@ -159,11 +161,11 @@ export class Registration extends Block {
                     type: 'submit',
                     mix_class:'registration__button',
                     variant: 'registration',
-                    events: { 
-                        'click': this.handleSubmit 
+                    events: {
+                        'click': this.handleSubmit
                     }
                 })
             }
-        })
+        });
     }
 }

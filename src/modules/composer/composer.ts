@@ -1,6 +1,10 @@
-import Block from "../../view/block";
+import Block from '../../view/block';
 import {composer} from './composer.tmpl';
-import Field from "../../components/field/field";
+import Field from '../../components/field/field';
+
+const data = {
+    message: ''
+};
 
 export class Composer extends Block {
     constructor(props = {}) {
@@ -8,12 +12,12 @@ export class Composer extends Block {
     }
 
     handleChange(e) {
-        console.log(e.target.value)
+        data.message = e.target.value;
     }
 
     handleEnter(e) {
-        if (e.key === "Enter") {
-            console.log('enter');
+        if (e.key === 'Enter') {
+            console.log(data);
         }
     }
 
@@ -24,13 +28,13 @@ export class Composer extends Block {
                     name: 'message',
                     type: 'text',
                     placeholder: 'Введите сообщение',
-                    mix_class: 'composer', 
+                    mix_class: 'composer',
                     events: {
                         'input': this.handleChange,
                         'keyup': this.handleEnter
                     }
                 })
             }
-        })
+        });
     }
 }

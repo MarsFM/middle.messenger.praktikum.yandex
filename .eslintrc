@@ -14,5 +14,6 @@
             "experimentalObjectRestSpread": true
         },
         "requireConfigFile": false
-    }
+    },
+    "parser": "@typescript-eslint/parser"
 }
