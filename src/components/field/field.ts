@@ -1,9 +1,8 @@
-import {field} from "./field.tmpl";
-import Block from "../../view/block";
+import {field} from './field.tmpl';
+import Block from '../../view/block';
 
 export default class Field extends Block {
     element: HTMLInputElement;
-    onInput: (e: Event) => void;
 
     constructor(props) {
         super(props);
@@ -12,30 +11,36 @@ export default class Field extends Block {
 
         const nameElement = this.element.getAttribute('name');
         this.checkField(nameElement);
-
-        this.onInput = props.onInput;
     }
 
     private checkField(name) {
         switch(name) {
             case 'login':
-                this.addEvent('input', this.onChangeLogin);
+                this.addEvent(['focusin', 'focusout'], this.onChangeLogin);
                 break;
             case 'password':
-                this.addEvent('input', this.onChangePassword);
-                break
+                this.addEvent(['focusin', 'focusout'], this.onChangePassword);
+                break;
             case 'email':
-                this.addEvent('input', this.onChangeEmail);
-                break
+                this.addEvent(['focusin', 'focusout'], this.onChangeEmail);
+                break;
             case 'phone':
-                this.addEvent('input', this.onChangePhone);
-                break
-            default: null
+                this.addEvent(['focusin', 'focusout'], this.onChangePhone);
+                break;
+            case 'firstName':
+            case 'lastName':
+            case 'nickName':
+                this.addEvent(['focusin', 'focusout'], this.onChangeName);
+                break;
+            case 'message':
+                this.addEvent(['input'], this.onChangeMessage);
+                break;
+            default: null;
         }
     }
 
     private onChangeLogin(e: Event) {
-        const input = (e.target as HTMLInputElement)
+        const input = (e.target as HTMLInputElement);
         const text = input.value;
         const isMatch = text.match(/^[a-zA-Z0-9_-]+$/)?.length;
         const isNumber =  Number.isInteger(Number(text));
@@ -44,41 +49,30 @@ export default class Field extends Block {
         } else {
             input.style.background = 'pink';
         }
-
-        console.log(this);
     }
-    
+
     private onChangePassword(e) {
-        const input = (e.target as HTMLInputElement)
+        const input = (e.target as HTMLInputElement);
         const text = input.value;
         const isMatchFirstLetter = text.match(/([A-Z])+(\d)+/g)?.length;
         const isMatchFirstNumber = text.match(/(\d)+([A-Z])+/g)?.length;
-        console.log(isMatchFirstLetter, isMatchFirstLetter, isMatchFirstNumber);
 
         if ((text.length >= 8 && text.length <= 40) && text && (isMatchFirstLetter || isMatchFirstNumber)) {
-            input.style.background = 'white'
+            input.style.background = 'white';
         } else {
-            input.style.background = 'pink'
-        }
-
-        if (typeof this.onInput === 'function') {
-            this.onInput(e);
+            input.style.background = 'pink';
         }
     }
 
     private onChangeEmail(e) {
-        const input = (e.target as HTMLInputElement)
+        const input = (e.target as HTMLInputElement);
         const text = input.value;
-        const isMatch = text.match(/^([a-z0-9_\.-]+)@([a-z0-9_\.-]([a-z])+)\.([a-z\.])$/)?.length;
+        const isMatch = text.match(/^([a-z0-9_\.-]+)@([a-z0-9_\.-]([a-z])+)\.([a-z\.]{2,})$/)?.length;
 
         if (isMatch) {
             input.style.background = 'white';
         } else {
             input.style.background = 'pink';
-        }
-
-        if (typeof this.onInput === 'function') {
-            this.onInput(e);
         }
     }
 
@@ -92,22 +86,46 @@ export default class Field extends Block {
         } else {
             input.style.background = 'pink';
         }
+    }
 
-        if (typeof this.onInput === 'function') {
-            this.onInput(e);
+    private onChangeName(e: Event) {
+        const input = (e.target as HTMLInputElement);
+        const text = input.value;
+        const isMatch = text.match(/^([A-ZА-ЯЁ])+([A-zА-яЁё-])+$/)?.length;
+
+        if (isMatch) {
+            input.style.background = 'white';
+        } else {
+            input.style.background = 'pink';
         }
     }
 
-    private addEvent(eventName, callback) {
+    private onChangeMessage(e: Event) {
+        const input = (e.target as HTMLInputElement);
+        const text = input.value;
+        const isMatch = text.match(/^([A-zА-яёЁ/)/():])+$/)?.length;
+
+        if (isMatch) {
+            input.style.background = 'white';
+        } else {
+            input.style.background = 'pink';
+        }
+    }
+
+    private addEvent(eventNames, callback) {
+        const obj = eventNames.reduceRight((acc, eventName) => ({
+            ...acc,
+            [eventName]: callback
+        }), {});
+
         this.setProps({
             ...this.props,
             events: {
                 ...this.props.events,
-                [eventName]: callback
+                ...obj
             }
-        })
+        });
     }
-
 
     render() {
         return this.compile(field, this.props);

@@ -1,5 +1,5 @@
-import Block from "../../view/block";
-import ChatItem from "../chat-item";
+import Block from '../../view/block';
+import ChatItem from '../chat-item';
 import {chatItems} from './chat-items.tmpl';
 
 const users = [
@@ -93,10 +93,9 @@ const users = [
         ],
     },
 ];
-
 export class ChatItems extends Block {
     constructor(props = {}) {
-        super(props)
+        super(props);
     }
 
     renderChatItems() {
@@ -105,7 +104,7 @@ export class ChatItems extends Block {
             events: {
                 'click': (e) => console.log('hello'),
             },
-        }))
+        }));
     }
 
     render() {
@@ -113,6 +112,6 @@ export class ChatItems extends Block {
             components: {
                 'chatItems': this.renderChatItems()
             }
-        })
+        });
     }
 }

@@ -7,5 +7,8 @@
         "strictNullChecks": true,
         "esModuleInterop": true,
         "sourceMap": true,
+        "noImplicitAny": true,
+        "noUnusedLocals": true,
+        "noUnusedParameters": true,
     }
 }

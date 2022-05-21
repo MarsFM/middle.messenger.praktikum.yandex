@@ -1,10 +1,9 @@
-import Chat from '../../pages/chat/chat'
+import Chat from '../../pages/chat/chat';
 import renderPage5nn from '../../pages/page5nn';
 import renderPage404 from '../../pages/page404';
 import Authorization from '../../pages/authorization/authorization';
 import Registration from '../../pages/registration';
 import Profile from '../../pages/profile';
-
 
 export const rootNavigation = () => {
     const root = document.getElementById('root') as HTMLElement;

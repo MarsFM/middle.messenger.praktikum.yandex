@@ -1,6 +1,7 @@
-import Button from "../../components/button/button";
-import Field from "../../components/field/field";
-import Block from "../../view/block";
+import Button from '../../components/button/button';
+import Field from '../../components/field/field';
+import {checkValidate} from '../../utils/validate';
+import Block from '../../view/block';
 import {profile} from './profile.tmpl';
 
 const data = {
@@ -76,10 +77,12 @@ export class Profile extends Block {
 
     changePassword(e: Event) {
         console.log(data);
+        checkValidate(this._childrens);
     }
 
     changeData(e: Event) {
         console.log(data);
+        checkValidate(this._childrens);
     }
 
     render() {
@@ -176,6 +179,6 @@ export class Profile extends Block {
                     },
                 }),
             }
-        })
+        });
     }
 }

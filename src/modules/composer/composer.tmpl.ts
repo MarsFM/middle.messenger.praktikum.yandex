@@ -1,7 +1,7 @@
 import tmpl from './composer.hbs';
-import {registerPartials} from '../../../utils';
+import {registerPartials} from '../../utils/hbs';
 
 export const composer = ({components}) => {
-    registerPartials(components)
+    registerPartials(components);
     return tmpl();
 };
