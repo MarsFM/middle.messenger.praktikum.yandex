@@ -1,10 +1,9 @@
-import registration from '../../pages/registration';
 import Chat from '../../pages/chat/chat'
-import profile from '../../pages/profile';
 import renderPage5nn from '../../pages/page5nn';
 import renderPage404 from '../../pages/page404';
 import Authorization from '../../pages/authorization/authorization';
 import Registration from '../../pages/registration';
+import Profile from '../../pages/profile';
 
 
 export const rootNavigation = () => {
@@ -41,7 +40,10 @@ export const rootNavigation = () => {
     });
 
     profileLink.addEventListener('click', () => {
-        root.innerHTML = profile();
+        const profile = new Profile();
+        root.innerHTML = '';
+        root.appendChild(profile.getContent());
+        return root;
     });
 
     error5nnLink.addEventListener('click', () => {
