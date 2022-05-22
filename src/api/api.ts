@@ -1,4 +1,6 @@
-enum METHODS {
+import {queryStringify} from '../utils/api';
+
+enum Method {
     GET = 'GET',
     POST = 'POST',
     PUT = 'PUT',
@@ -15,19 +17,19 @@ type Options = {
 export class HTTPTransport {
     get = (url, options: Options) => {
 
-        return this.request(url, { ...options, method: METHODS.GET }, options.timeout);
+        return this.request(url, { ...options, method: Method.GET }, options.timeout);
     };
 
     post = (url, options: Options) => {
-        return this.request(url, { ...options, method: METHODS.POST }, options.timeout);
+        return this.request(url, { ...options, method: Method.POST }, options.timeout);
     };
 
     put = (url, options: Options) => {
-        return this.request(url, { ...options, method: METHODS.PUT }, options.timeout);
+        return this.request(url, { ...options, method: Method.PUT }, options.timeout);
     };
 
     delete = (url, options: Options) => {
-        return this.request(url, { ...options, method: METHODS.DELETE }, options.timeout);
+        return this.request(url, { ...options, method: Method.DELETE }, options.timeout);
     };
 
     request = (url, options: Options, timeout = 5000) => {
@@ -40,7 +42,7 @@ export class HTTPTransport {
             }
 
             const xhr = new XMLHttpRequest();
-            const isGet = method === METHODS.GET;
+            const isGet = method === Method.GET;
 
             xhr.open(
                 method,
@@ -71,14 +73,3 @@ export class HTTPTransport {
         });
     };
 }
-
-const queryStringify = (data) => {
-    if (typeof data !== 'object') {
-        throw new Error('Data must be object');
-    }
-
-    const keys = Object.keys(data);
-    return keys.reduce((result, key, index) => {
-        return `${result}${key}=${data[key]}${index < keys.length - 1 ? '&' : ''}`;
-    }, '?');
-};

@@ -42,9 +42,11 @@ export default class Field extends Block {
     private onChangeLogin(e: Event) {
         const input = (e.target as HTMLInputElement);
         const text = input.value;
-        const isMatch = text.match(/^[a-zA-Z0-9_-]+$/)?.length;
+        const isMatchString = text.match(/^[a-zA-Z0-9_-]+$/)?.length;
         const isNumber =  Number.isInteger(Number(text));
-        if ((text.length >= 3 && text.length <= 20) && isMatch && !isNumber) {
+        const isMatch = Boolean((text.length >= 3 && text.length <= 20) && isMatchString && !isNumber);
+
+        if (isMatch) {
             input.style.background = 'white';
         } else {
             input.style.background = 'pink';
@@ -57,7 +59,9 @@ export default class Field extends Block {
         const isMatchFirstLetter = text.match(/([A-Z])+(\d)+/g)?.length;
         const isMatchFirstNumber = text.match(/(\d)+([A-Z])+/g)?.length;
 
-        if ((text.length >= 8 && text.length <= 40) && text && (isMatchFirstLetter || isMatchFirstNumber)) {
+        const isMatch = Boolean((text.length >= 8 && text.length <= 40) && text && (isMatchFirstLetter || isMatchFirstNumber));
+
+        if (isMatch) {
             input.style.background = 'white';
         } else {
             input.style.background = 'pink';
@@ -67,7 +71,7 @@ export default class Field extends Block {
     private onChangeEmail(e) {
         const input = (e.target as HTMLInputElement);
         const text = input.value;
-        const isMatch = text.match(/^([a-z0-9_\.-]+)@([a-z0-9_\.-]([a-z])+)\.([a-z\.]{2,})$/)?.length;
+        const isMatch = Boolean(text.match(/^([a-z0-9_\.-]+)@([a-z0-9_\.-]([a-z])+)\.([a-z\.]{2,})$/)?.length);
 
         if (isMatch) {
             input.style.background = 'white';
@@ -79,9 +83,9 @@ export default class Field extends Block {
     private onChangePhone(e) {
         const input = (e.target as HTMLInputElement);
         const text = input.value;
-        const isMatch = text.match(/^(\+)?(\d)+$/)?.length;
+        const isMatch = Boolean(text.match(/^(\+)?(\d)+$/)?.length);
 
-        if ((text.length >= 8 && text.length <= 40) && isMatch) {
+        if (isMatch) {
             input.style.background = 'white';
         } else {
             input.style.background = 'pink';
@@ -91,7 +95,7 @@ export default class Field extends Block {
     private onChangeName(e: Event) {
         const input = (e.target as HTMLInputElement);
         const text = input.value;
-        const isMatch = text.match(/^([A-ZА-ЯЁ])+([A-zА-яЁё-])+$/)?.length;
+        const isMatch = Boolean(text.match(/^([A-ZА-ЯЁ])+([A-zА-яЁё-])+$/)?.length);
 
         if (isMatch) {
             input.style.background = 'white';
@@ -103,7 +107,7 @@ export default class Field extends Block {
     private onChangeMessage(e: Event) {
         const input = (e.target as HTMLInputElement);
         const text = input.value;
-        const isMatch = text.match(/^([A-zА-яёЁ/)/():])+$/)?.length;
+        const isMatch = Boolean(text.match(/^([A-zА-яёЁ/)/():])+$/)?.length);
 
         if (isMatch) {
             input.style.background = 'white';

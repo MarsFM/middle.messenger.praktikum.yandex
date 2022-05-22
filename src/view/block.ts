@@ -4,7 +4,7 @@ import uuid4 from 'uuid4';
 export default class Block {
     eventBus;
     props;
-    _meta;
+    meta;
     _element;
     _childrens;
     _id;
@@ -16,12 +16,10 @@ export default class Block {
         FLOW_RENDER: 'flow:render'
     };
 
-    static countDidMount = 1;
-
     constructor(props = {} as any) {
         const eventBus = new EventBus();
 
-        this._meta = {
+        this.meta = {
             props
         };
 
@@ -31,37 +29,37 @@ export default class Block {
 
         this.eventBus = () => eventBus;
 
-        this._registerEvents(eventBus);
+        this.registerEvents(eventBus);
 
         eventBus.emit(Block.EVENTS.INIT);
     };
 
-    _registerEvents(eventBus) {
+    private registerEvents(eventBus) {
         eventBus.on(Block.EVENTS.INIT, this.init.bind(this));
         eventBus.on(Block.EVENTS.FLOW_CDM, this._componentDidMount.bind(this));
         eventBus.on(Block.EVENTS.FLOW_CDU, this._componentDidUpdate.bind(this));
         eventBus.on(Block.EVENTS.FLOW_RENDER, this._render.bind(this));
     };
 
-    _componentDidMount() {
+    private _componentDidMount() {
         this.componentDidMount();
     };
 
-    _componentDidUpdate(oldProps, newProps) {
+    private _componentDidUpdate(oldProps, newProps) {
         const isReRender = this.componentDidUpdate(oldProps, newProps);
         if (isReRender) {
             this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
         }
     };
 
-    _addEvents() {
+    private addEvents() {
         const {events = {}} = this.props;
         for (const eventName of Object.keys(events)) {
             this._element.addEventListener(eventName, events[eventName]);
         }
     };
 
-    _removeEvents() {
+    private removeEvents() {
         const {events = {}} = this.props;
         for (const eventName of Object.keys(events)) {
             this._element.removeEventListener(eventName, events[eventName]);
@@ -78,14 +76,14 @@ export default class Block {
         return true;
     };
 
-    _render() {
+    private _render() {
         this._element = this.createDocumentElement('div');
         const block = this.render() as any;
-        this._removeEvents();
+        this.removeEvents();
         this._element.innerHTML = '';
         this._element.appendChild(block);
         this._element.firstElementChild.setAttribute('data-id', this._id);
-        this._addEvents();
+        this.addEvents();
     };
 
     render() {};
