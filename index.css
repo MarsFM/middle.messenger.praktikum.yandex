@@ -1,11 +1,21 @@
 :root {
     --mainColor: #F83737;
+    --default-avatar: #FEB6B6;
     --clr-white: #ffffff;
     --ff-main: 'Arial', sans-serif;
     --clr-title: #000000;
     --crl-grey: #cccccc;
 }
 
+* {
+    margin: 0;
+    padding: 0;
+}
+
 body {
-    color: var(--mainColor);
+    font-family: var(--ff-main);
+}
+
+#root {
+    height: 100%;
 }

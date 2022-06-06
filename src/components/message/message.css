@@ -1,0 +1,16 @@
+.message {
+    box-sizing: border-box;
+    padding: 10px;
+
+    background: var(--crl-grey);
+    border-radius: 30px;
+    margin-bottom: 20px;
+
+    &__true {
+        align-self: flex-start;
+    }
+
+    &__false {
+        align-self: flex-end;
+    }
+}
