@@ -9,8 +9,7 @@ const data = {
     password: ''
 };
 export default class Authorization extends Block {
-    components;
-    constructor(props) {
+    constructor(props: Record<string, any>) {
         super(props);
     }
 

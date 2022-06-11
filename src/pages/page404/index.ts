@@ -1,3 +1,3 @@
-import {renderPage404} from './page404.tmpl';
+import {Page404} from './page404';
 
-export default renderPage404;
+export default Page404;

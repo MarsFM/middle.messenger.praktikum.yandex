@@ -102,7 +102,7 @@ export class ChatItems extends Block {
         return users.map(user => new ChatItem({
             data: user,
             events: {
-                'click': (e) => console.log('hello'),
+                'click': () => console.log('hello'),
             },
         }));
     }

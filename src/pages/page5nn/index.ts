@@ -1,3 +1,3 @@
-import {renderPage5nn} from './page5nn.tmpl';
+import {Page5nn} from './page5nn';
 
-export default renderPage5nn;
+export default Page5nn;

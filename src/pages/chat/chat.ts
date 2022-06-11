@@ -1,4 +1,3 @@
-import ChatItem from '../../modules/chat-item';
 import ChatItems from '../../modules/chat-items';
 import Composer from '../../modules/composer';
 import Block from '../../view/block';
