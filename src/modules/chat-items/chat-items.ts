@@ -2,7 +2,7 @@ import Block from '../../view/block';
 import ChatItem from '../chat-item';
 import {chatItems} from './chat-items.tmpl';
 
-const users = [
+export const users = [
     {
         id: 1,
         name: 'Кирилл',
@@ -102,7 +102,9 @@ export class ChatItems extends Block {
         return users.map(user => new ChatItem({
             data: user,
             events: {
-                'click': () => console.log('hello'),
+                'click': () => {
+                    users[0].messages[0].text = 'hello';
+                }
             },
         }));
     }

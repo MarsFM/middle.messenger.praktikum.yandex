@@ -6,10 +6,6 @@ export class ChatItem extends Block {
         super(props);
     }
 
-    handleClick(e) {
-        console.log(e);
-    }
-
     render() {
         return this.compile(chatItem, {
             data: this.props.data

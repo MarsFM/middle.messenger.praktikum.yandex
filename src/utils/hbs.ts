@@ -20,7 +20,7 @@ export const registerPartialsForArray = (components: Block[], name: string) => {
     let newStr = '';
 
     if (Array.isArray(components[name])) {
-        components[name].forEach((component, index) => {
+        components[name].forEach((component) => {
             const tmpNode = document.createElement('div');
             const element = component.render();
             element.firstElementChild.setAttribute('data-id', component._id);
