@@ -16,7 +16,6 @@ type Options = {
 
 export class HTTPTransport {
     get = (url, options: Options) => {
-
         return this.request(url, { ...options, method: Method.GET }, options.timeout);
     };
 

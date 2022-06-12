@@ -1,8 +1,8 @@
-import messageTmpl from '.';
+import {messageTmpl} from './message.tmpl';
 import Block from '../../view/block';
 
 type MessageProps = {
-    my: boolean;
+    my: string;
     text: string;
 };
 

@@ -1,25 +1,19 @@
 import Block from '../../view/block';
 import {composer} from './composer.tmpl';
 import Field from '../../components/field/field';
+import {connect} from '../../utils/store/connect';
+import store from '../../utils/store/store';
 
-const data = {
-    message: ''
-};
 
-export class Composer extends Block {
-    constructor(props = {}) {
+class ComposerContainer extends Block {
+    constructor(props) {
         super(props);
     }
 
-    handleChange(e) {
-        data.message = e.target.value;
-    }
-
-    handleEnter(e) {
+    handleEnter = (e) => {
         if (e.key === 'Enter') {
-            console.log(data);
         }
-    }
+    };
 
     render() {
         return this.compile(composer, {
@@ -30,11 +24,24 @@ export class Composer extends Block {
                     placeholder: 'Введите сообщение',
                     mix_class: 'composer',
                     events: {
-                        'input': this.handleChange,
-                        'keyup': this.handleEnter
+                        'keyup': (e) => {
+                            if (e.key === 'Enter') {
+                                store.set('users.0.messages.4', {
+                                    text: 'Hello',
+                                    time: '12:11',
+                                    my: 'false'
+                                });
+                            }
+                        }
                     }
                 })
             }
         });
     }
 }
+
+const mapStateToProps = (state) => ({
+    user: state.users[0]
+});
+
+export const Composer = connect(mapStateToProps)(ComposerContainer);

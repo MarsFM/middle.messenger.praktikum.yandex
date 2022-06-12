@@ -157,7 +157,7 @@ export class Registration extends Block {
                     },
                 }),
                 'button': new Button({
-                    name: 'registration',
+                    name: 'Регистрация',
                     type: 'submit',
                     mix_class:'registration__button',
                     variant: 'registration',

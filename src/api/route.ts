@@ -1,4 +1,4 @@
-import {isEqualString} from '../utils/isEqual';
+import {isEqualString} from '../utils/lodash';
 import {renderDom} from '../utils/render-dom';
 import Block from '../view/block';
 

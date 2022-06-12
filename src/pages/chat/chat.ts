@@ -13,7 +13,7 @@ export default class Chat extends Block {
                 'leftHeder': new LeftHeader(),
                 'composer': new Composer(),
                 'chatItems': new ChatItems(),
-                'messages': new Messages
+                'messages': new Messages()
             }
         });
     }

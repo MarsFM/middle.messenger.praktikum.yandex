@@ -77,11 +77,18 @@ export default class Block {
     };
 
     private _render() {
-        this._element = this.createDocumentElement('div');
-        const block = this.render() as any;
-        this.removeEvents();
-        this._element.innerHTML = '';
-        this._element.appendChild(block);
+        const block = this.render() as any; // вызывает compile
+
+        if (this._element) {
+            this.removeEvents();
+            this._element.replaceWith(block.firstElementChild);
+        } else {
+            this._element = this.createDocumentElement('div');
+
+            this._element.innerHTML = '';
+            this._element.appendChild(block);
+        }
+
         this._element.firstElementChild.setAttribute('data-id', this._id);
         this.addEvents();
     };
