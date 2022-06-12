@@ -1,4 +1,4 @@
-import Router from './src/api/routers';
+import Router from './src/utils/router/routers';
 import Chat from './src/pages/chat';
 import Profile from './src/pages/profile';
 import Authorization from './src/pages/authorization/authorization';

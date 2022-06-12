@@ -21,3 +21,8 @@
     
     cursor: pointer;
 }
+
+.button:disabled,
+.button[disabled] {
+    background: #cccccc;
+}

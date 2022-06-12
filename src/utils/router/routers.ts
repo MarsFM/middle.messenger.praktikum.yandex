@@ -1,4 +1,4 @@
-import Block from '../view/block';
+import Block from '../../view/block';
 import Route from './route';
 
 interface IRouter {

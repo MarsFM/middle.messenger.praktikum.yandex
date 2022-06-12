@@ -7,6 +7,7 @@ export default class Button extends Block {
     }
 
     render() {
+        console.log('props', this.props);
         return this.compile(button, this.props);
     }
 };

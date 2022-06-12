@@ -8,13 +8,20 @@ enum Method {
 };
 
 type Options = {
-    headers: Record<any, any>;
-    method: string;
-    timeout: number;
-    data: Document | XMLHttpRequestBodyInit | null | undefined;
+    headers?: Record<any, any>;
+    method?: string;
+    timeout?: number;
+    data?: Document | XMLHttpRequestBodyInit | null | undefined | any;
 }
 
 export class HTTPTransport {
+    static API_URL = 'https://ya-praktikum.tech/api/v2';
+    protected url: string;
+
+    constructor(url: string) {
+       this.url = `${HTTPTransport.API_URL}${url}`;
+    }
+
     get = (url, options: Options) => {
         return this.request(url, { ...options, method: Method.GET }, options.timeout);
     };
@@ -32,7 +39,11 @@ export class HTTPTransport {
     };
 
     request = (url, options: Options, timeout = 5000) => {
-        const {headers = {}, method, data} = options;
+        const {headers = {
+            'Content-Type': 'application/json',
+            'responseType': 'json',
+            'withCredentials': true
+        }, method, data} = options;
 
         return new Promise(function (resolve, reject) {
             if (!method) {

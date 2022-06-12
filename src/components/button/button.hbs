@@ -1,1 +1,7 @@
-<button type='{{type}}' class='button button-{{variant}} {{mix_class}}'>{{name}}</button>
+<button
+    type='{{type}}' 
+    class='button button-{{variant}} {{mix_class}}'
+    {{#if isDisable}} disabled={{true}} {{/if}} 
+>
+    {{name}}
+</button>

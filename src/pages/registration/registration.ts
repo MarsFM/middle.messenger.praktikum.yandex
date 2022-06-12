@@ -1,13 +1,12 @@
+import Block from '../../view/block';
 import Button from '../../components/button/button';
 import Field from '../../components/field/field';
-import {checkValidate} from '../../utils/validate';
-import Block from '../../view/block';
 import {registration} from './registration.tmpl';
+import {checkValidate} from '../../utils/validate';
 
 const data = {
     firstName: '',
     lastName: '',
-    nickName: '',
     login: '',
     email: '',
     phone: '',
@@ -16,12 +15,13 @@ const data = {
 };
 
 export class Registration extends Block {
+    isDisable = true;
+
     constructor(props = {}) {
         super(props);
     }
 
     handleSubmit(e: Event) {
-        console.log(data);
         checkValidate(this._childrens);
     };
 
@@ -37,13 +37,6 @@ export class Registration extends Block {
         const text = input.value;
 
         data.lastName = text;
-    }
-
-    handleNickName(e: Event) {
-        const input = (e.target as HTMLInputElement);
-        const text = input.value;
-
-        data.nickName = text;
     }
 
     handleLogin(e: Event) {
@@ -82,6 +75,8 @@ export class Registration extends Block {
     }
 
     render() {
+        console.log('This->isDisable', this);
+        console.log('isDisable', this.isDisable);
         return this.compile(registration, {
             components: {
                 'firstNameField': new Field({
@@ -100,15 +95,6 @@ export class Registration extends Block {
                     mix_class: 'registration__last-name',
                     events: {
                         'change': this.handleLastName
-                    },
-                }),
-                'nicknameField': new Field({
-                    name: 'nickname',
-                    type: 'text',
-                    placeholder: 'Ник',
-                    mix_class: 'registration__nickname',
-                    events: {
-                        'change': this.handleNickName
                     },
                 }),
                 'loginField': new Field({
@@ -159,10 +145,11 @@ export class Registration extends Block {
                 'button': new Button({
                     name: 'Регистрация',
                     type: 'submit',
+                    isDisable: this.isDisable,
                     mix_class:'registration__button',
                     variant: 'registration',
                     events: {
-                        'click': this.handleSubmit
+                        'click': this.handleSubmit.bind(this)
                     }
                 })
             }

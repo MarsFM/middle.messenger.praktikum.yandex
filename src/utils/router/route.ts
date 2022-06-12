@@ -1,6 +1,6 @@
-import {isEqualString} from '../utils/lodash';
-import {renderDom} from '../utils/render-dom';
-import Block from '../view/block';
+import {isEqualString} from '../lodash';
+import {renderDom} from '../render-dom';
+import Block from '../../view/block';
 
 class Route {
     _pathname: string;
